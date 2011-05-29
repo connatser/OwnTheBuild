@@ -1,0 +1,1 @@
+This is self explanatory, and should contain any source files, such as binaries like .psd, .ai, etc. Binaries should be left out of source control.

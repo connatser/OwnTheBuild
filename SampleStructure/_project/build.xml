@@ -1,0 +1,89 @@
+<project name="My Project" default="init">
+
+	<!-- load previously defined configuration properties file -->
+	<property file="build.properties" />
+	<property name="APP_ROOT" value="DEPLOY" />
+
+	<!-- points to our flexTasks.jar we copied to the libs folder to distribute with the project -->
+	<taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/flexTasks.jar" />
+
+	<!-- Initialize the targets -->
+	<target name="init" depends="CreateBase, CreateLicense, CompileFlex, CreateWrapper, CompileAsdoc, CreateRelease">
+		<echo message="All targets ran successfully." />
+	</target>
+
+	<!-- Create Deploy and ASDOC Directories -->
+	<target name="CreateBase">
+		<echo message="Creating base directories." />
+		<mkdir dir="${DEPLOY_DIR}" />
+		<delete dir="${APP_DOCS}" />
+		<mkdir dir="${APP_DOCS}" />
+		<echo message="Base directories created successfully." />
+	</target>
+
+	<!-- Build Base License Files -->
+	<target name="CreateLicense">
+		<echo message="Creating License and Readme." />
+		<copy file="${PROJ_LICENSE_DIR}/LICENSE" todir="${DEPLOY_DIR}" />
+		<copy file="${PROJ_LICENSE_DIR}/README.txt" todir="${DEPLOY_DIR}" />
+		<echo message="Creating License and Readme." />
+	</target>
+
+    <!-- Copy Build Assets -->
+	<target name="CopyBuildAssets">
+		<echo message="Copying Build Assets." />
+		<copy todir="${ASSETS}">
+			<fileset dir="${BUILD_ASSETS}" includes="*" />
+		</copy>
+		<copy todir="${ASSETS}/movies">
+			<fileset dir="${BUILD_ASSETS}/movies" includes="*" />
+		</copy>
+		<echo message="Build Assets copied successfully." />
+	</target>
+
+	<!-- Build and output the main swf-->
+	<target name="CompileFlex" depends="CopyBuildAssets">
+		<echo message="Compiling the project." />
+		<mxmlc file="${SRC_DIR}/Main.as" output="${DEPLOY_DIR}/${SWF_NAME}.swf">
+			<load-config filename="${FLEX_HOME}/frameworks/flex-config.xml" />
+			<source-path path-element="${FLEX_HOME}/frameworks" />
+			<compiler.debug>true</compiler.debug>
+			<compiler.library-path file="${LIBS_DIR}/" />
+		</mxmlc>
+		<echo message="Project compiled successfully." />
+	</target>
+
+	<!--Build and deploy the HTML Wrapper-->
+	<target name="CreateWrapper">
+		<echo message="Creating the wrapper." />
+		<html-wrapper title="${TITLE}" file="index.html" width="800" height="600" bgcolor="#DDDDDD" application="app" swf="${SWF_NAME}" version-major="10" version-minor="0" version-revision="0" history="true" output="${DEPLOY_DIR}" />
+		<echo message="Wrapper created successfully." />
+	</target>
+
+	<!--Run the ASDoc executable and generate the ASDocs to the new output folder-->
+	<target name="CompileAsdoc">
+		<echo message="Creating the ASDocs." />
+		<exec executable="${ASDOC_DIR}" failonerror="true">
+			<arg line='-doc-sources ${SRC_DIR}' />
+			<arg line='-window-title "${TITLE}"' />
+			<arg line='-output ${APP_DOCS}' />
+			<arg line='-external-library-path=${LIBS_DIR}/' />
+		</exec>
+		<echo message="ASDocs created successfully." />
+	</target>
+
+	<!--Create the release zip of the core runtime and assets. Date and Time stamp the name for reference. -->
+	<target name="CreateRelease">
+		<echo message="Creating the release." />
+		<tstamp />
+		<zip destfile="${REL_DIR}/${PROJ_PREFIX}_${DSTAMP}_${TSTAMP}.zip">
+			<zipfileset dir="bin/assets" prefix="assets" />
+			<zipfileset dir="bin/" includes="${SWF_NAME}.swf" fullpath="${SWF_NAME}.swf" />
+			<zipfileset dir="bin/" includes="index.html" fullpath="index.html" />
+			<zipfileset dir="bin/" includes="swfobject.js" fullpath="swfobject.js" />
+			<zipfileset dir="bin/" includes="LICENSE" fullpath="LICENSE" />
+			<zipfileset dir="bin/" includes="README.txt" fullpath="README.txt" />
+		</zip>
+		<echo message="Release created successfully." />
+	</target>
+</project>

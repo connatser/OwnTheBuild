@@ -1,0 +1,77 @@
+<project name="Flex Ant Tasks Build Script" default="init">
+
+	<!-- load previously defined configuration properties file -->
+	<property file="build.properties" />
+	<property name="APP_ROOT" value="DEPLOY"/>
+	
+	<!-- points to our flexTasks.jar we copied to the libs folder to distribute with the project -->
+	<taskdef resource="flexTasks.tasks" classpath="${basedir}/libs/flexTasks.jar" />
+
+	<!-- delete and create the DEPLOY dir again -->
+	<target name="init" depends="CreateDirectories, CopyCommonLibraries">
+		<echo message="All targets ran successfully." />
+	</target>
+	
+	<!--Create the main directories for the project.-->
+	<target name="CreateDirectories">
+		<echo message="Creating the main project package directory." />
+			<mkdir dir="${PROJ_BASE}" />
+		<echo message="The Package directory has been created." />
+			
+		<echo message="Creating the Controller directory." />
+			<mkdir dir="${PROJ_CONTROLLER}" />
+		<echo message="The EController directory has been created." />
+		
+		<echo message="Creating the Events directory." />
+			<mkdir dir="${PROJ_EVENTS}" />
+		<echo message="The Events directory has been created." />
+			
+		<echo message="Creating the Model directory." />
+			<mkdir dir="${PROJ_MODEL}" />
+		<echo message="The Model directory has been created." />
+		
+		<echo message="Creating the Service directory." />
+			<mkdir dir="${PROJ_SERVICE}" />
+		<echo message="The Service directory has been created." />
+		
+		<echo message="Creating the Tests directory." />
+			<mkdir dir="${PROJ_TESTS}" />
+		<echo message="The Tests directory has been created." />
+		
+		<echo message="Creating the Utility directory." />
+			<mkdir dir="${PROJ_UTIL}" />
+		<echo message="The Utility directory has been created." />
+		
+		<echo message="Creating the View directory." />
+			<mkdir dir="${PROJ_VIEW}" />
+		<echo message="The View directory has been created." />
+		
+		<echo message="Creating the Deploy directory." />
+			<mkdir dir="${DEPLOY_DIR}" />
+		<echo message="The Deploy directory has been created." />
+		
+		<echo message="Creating the Assets directory." />
+			<mkdir dir="${ASSETS}" />
+		<echo message="The Assets directory has been created." />
+		
+		<echo message="Creating the Documents directory." />
+			<mkdir dir="${APP_DOCS}" />
+		<echo message="The Documents directory has been created." />
+		
+		<echo message="Creating the Build Assets directory." />
+			<mkdir dir="${BUILD_ASSETS}" />
+		<echo message="The Build Assets directory has been created." />
+	</target>
+	
+	<!--Copy the commonly used Libraries over to the new project -->
+	<target name="CopyCommonLibraries">
+		<echo message="Copying the common library files over to the new project." />
+		<copy todir="${LIBS_DIR}">
+			<fileset dir="${PROJ_COMMON_LIBS}">
+				<include name="**/*.swc"/>
+				<include name="**/*.jar"/>
+			</fileset>
+		</copy> 	
+		<echo message="The common library files have been copied." />
+	</target>
+</project>

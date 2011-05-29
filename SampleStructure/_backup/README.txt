@@ -1,0 +1,1 @@
+This directory is typically used to create backups of all files in the _project root.
