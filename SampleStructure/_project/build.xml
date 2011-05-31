@@ -8,7 +8,7 @@
 	<taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/flexTasks.jar" />
 
 	<!-- Initialize the targets -->
-	<target name="init" depends="CreateBase, CreateLicense, CompileFlex, CreateWrapper, CompileAsdoc, CreateRelease">
+	<target name="init" depends="CreateBase, CreateLicense, CompileFlex, CreateWrapper, CompileAsdoc, CreateRelease, CreateArchive">
 		<echo message="All targets ran successfully." />
 	</target>
 
@@ -71,12 +71,21 @@
 		</exec>
 		<echo message="ASDocs created successfully." />
 	</target>
-
-	<!--Create the release zip of the core runtime and assets. Date and Time stamp the name for reference. -->
+	
+	<!--Create the release of the core runtime and assets.-->
 	<target name="CreateRelease">
-		<echo message="Creating the release." />
+		<echo message="Creating the release."/>
+		<copy todir="${REL_DIR}">
+			<fileset dir="bin/"/>
+		</copy>
+		<echo message="Release created successfully."/>
+	</target>
+
+	<!--Create the archive zip of the core runtime and assets. Date and Time stamp the name for reference. -->
+	<target name="CreateArchive">
+		<echo message="Creating the archive." />
 		<tstamp />
-		<zip destfile="${REL_DIR}/${PROJ_PREFIX}_${DSTAMP}_${TSTAMP}.zip">
+		<zip destfile="${ARCHIVE_DIR}/${PROJ_PREFIX}_${DSTAMP}_${TSTAMP}.zip">
 			<zipfileset dir="bin/assets" prefix="assets" />
 			<zipfileset dir="bin/" includes="${SWF_NAME}.swf" fullpath="${SWF_NAME}.swf" />
 			<zipfileset dir="bin/" includes="index.html" fullpath="index.html" />
@@ -84,6 +93,6 @@
 			<zipfileset dir="bin/" includes="LICENSE" fullpath="LICENSE" />
 			<zipfileset dir="bin/" includes="README.txt" fullpath="README.txt" />
 		</zip>
-		<echo message="Release created successfully." />
+		<echo message="Archive created successfully." />
 	</target>
 </project>
