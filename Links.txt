@@ -1,4 +1,5 @@
 Own the Build Links
+Brian Connatser: @connatser
 
 Version control
 Git: http://git-scm.com/
