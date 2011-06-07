@@ -11,7 +11,12 @@ Kiln: http://www.fogcreek.com/kiln/
 
 Issue tracking hosting
 Lighthouse: http://lighthouseapp.com/
+	- http://hoth.entp.com/2008/4/11/github-and-lighthouse-sitting-in-a-tree
+	- http://help.lighthouseapp.com/kb/ticket-workflow/ticket-keyword-updates
 FogBugz: http://www.fogcreek.com/fogbugz/
+
+Automation
+Ant: http://ant.apache.org/
 
 Continuos Integration
 TeamCity: http://www.jetbrains.com/teamcity/
