@@ -3,6 +3,9 @@ Brian Connatser: @connatser
 
 Version control
 Git: http://git-scm.com/
+	- GitX: http://gitx.frim.nl/
+	- Brotherbard's fork of Gitx: https://github.com/brotherbard/gitx/downloads
+	- Tower: http://www.git-tower.com/
 Mercurial: http://mercurial.selenic.com/
 
 Version control hosting
