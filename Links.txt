@@ -20,6 +20,7 @@ FogBugz: http://www.fogcreek.com/fogbugz/
 
 Automation
 Ant: http://ant.apache.org/
+	- How to FTP with Ant: https://github.com/connatser/NumbKnuckle/tree/master/templates/FTP_Ant
 
 Continuos Integration
 TeamCity: http://www.jetbrains.com/teamcity/
