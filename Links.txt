@@ -1,0 +1,21 @@
+Own the Build Links
+
+Version control
+Git: http://git-scm.com/
+Mercurial: http://mercurial.selenic.com/
+
+Version control hosting
+Github: https://github.com/
+Kiln: http://www.fogcreek.com/kiln/
+
+Issue tracking hosting
+Lighthouse: http://lighthouseapp.com/
+FogBugz: http://www.fogcreek.com/fogbugz/
+
+Continuos Integration
+TeamCity: http://www.jetbrains.com/teamcity/
+Hudson: http://hudson-ci.org/
+
+File hosting
+DropBox: http://www.dropbox.com/
+Amazon S3: http://aws.amazon.com/s3/
