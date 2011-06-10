@@ -28,4 +28,4 @@ Hudson: http://hudson-ci.org/
 
 File hosting
 DropBox: http://www.dropbox.com/
-Amazon S3: http://aws.amazon.com/s3/
+Amazon S3/Amazon Cloud: http://aws.amazon.com/
