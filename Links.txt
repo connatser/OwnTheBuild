@@ -1,8 +1,6 @@
 Own the Build Links
 Brian Connatser: @connatser - connatser@gmail.com
 
-Added another line.
-
 Version control
 Git: http://git-scm.com/
 	- GitX: http://gitx.frim.nl/
